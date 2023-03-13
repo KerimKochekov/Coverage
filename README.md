@@ -1,5 +1,8 @@
 # COMP 5111 - Assignment 1
 
+## Github Link 
+https://github.com/KerimKochekov/comp5111asg01
+
 ## Structure
 - Test suites of Task 1 are under `${PROJECT_ROOT}/src/test/randoop[0-4]`
 - My tool for Task 2-3 is `${PROJECT_ROOT}/src/main/java/comp5111/assignment/Assignment1.java`
