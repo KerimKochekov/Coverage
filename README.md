@@ -13,7 +13,9 @@ https://github.com/KerimKochekov/comp5111asg01
 - Script for generating tests is `${PROJECT_ROOT}/gen-tests.sh`
 - Script for running `Assignment1.java` is `${PROJECT_ROOT}/run-soot.sh`
 
-## How to run?
+## How to run ?
+
+To run `run-soot.sh`:
 ```
 $ cd scripts
 $ chmod +x run-soot.sh
@@ -22,6 +24,12 @@ $ ./run-soot.sh
 
 Edit `run-soot.sh` based on your need (to specify test suite and specific classname). Follow the guidline `Assignment1.java` for more information.
 
+To run `gen-tests.sh`:
+```
+$ cd scripts
+$ chmod +x gen-tests.sh
+$ ./gen-tests.sh
+```
 ## Experiments
 
 `test/randoop0`
