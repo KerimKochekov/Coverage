@@ -161,40 +161,39 @@
 
 | Class | EclEmma | My tool |
 | :---:   | :---: | :---: |
-|Boolean | % | 100.0% |
-|Char | % | 91.3% |
-|Array | % | 95.8% |
-|Gregorian | % | 35.6% |
-|Filename | % | 51.0% |
-|String | % | 66.1% |
-|Number | % | 37.7% |
+|Boolean | 100.0% | 100.0% |
+|Char | 93.0% | 91.3% |
+|Array | 94.9% | 95.8% |
+|Gregorian | 34.2% | 35.6% |
+|Filename | 48.7% | 51.0% |
+|String | 65.0% | 66.1% |
+|Number | 38.4% | 37.7% |
 </td>
 <td>
-
+  
 | Class | EclEmma | My tool |
 | :---:   | :---: | :---: |
-|Boolean | % | 100.0% |
-|Char | % | 70.8% |
-|Array | % | 86.4% |
-|Gregorian | % | 34.0% |
-|Filename | % | 32.7% |
-|String | % | 53.3% |
-|Number | % | 26.2% |
+|Boolean | 100.0% | 100.0% |
+|Char | 70.8% | 70.8% |
+|Array | 86.4% | 86.4% |
+|Gregorian | 33.0% | 34.0% |
+|Filename | 32.7% | 32.7% |
+|String | 53.3% | 53.3% |
+|Number | 23.3% | 26.2% |
 </td>
 <td>
-
+  
 | Class | EclEmma | My tool |
 | :---:   | :---: | :---: |
-|Boolean | % | 100.0% |
-|Char | % | 100.0% |
-|Array | % | 89.5% |
-|Gregorian | % | 25.8% |
-|Filename | % | 50.0% |
-|String | % | 70.6% |
-|Number | % | 42.9% |
+|Boolean | 100.0% | 100.0% |
+|Char | 100.0% | 100.0% |
+|Array | 90.0% | 89.5% |
+|Gregorian | 25.0% | 25.8% |
+|Filename | 48.0% | 50.0% |
+|String | 70.1% | 70.6% |
+|Number | 34.3% | 42.9% |
 </td></tr> 
 </table>
-
 
 `test/randoop4`
 <table>
@@ -210,37 +209,36 @@
 
 | Class | EclEmma | My tool |
 | :---:   | :---: | :---: |
-|Boolean | % | 100.0% |
-|Char | % | 91.3% |
-|Array | % | 70.8% |
-|Gregorian | % | 32.2% |
-|Filename | % | 51.5% |
-|String | % | 67.8% |
-|Number | % | 36.9% |
+|Boolean | 100.0% | 100.0% |
+|Char | 93.0% | 91.3% |
+|Array | 72.2% | 70.8% |
+|Gregorian | 32.5% | 32.2% |
+|Filename | 49.2% | 51.5% |
+|String | 69.6% | 67.8% |
+|Number | 37.0% | 36.9% |
 </td>
 <td>
 
 | Class | EclEmma | My tool |
 | :---:   | :---: | :---: |
-|Boolean | % | 100.0% |
-|Char | % | 70.8% |
-|Array | % | 54.5% |
-|Gregorian | % | 34.0% |
-|Filename | % | 33.7% |
-|String | % | 53.3% |
-|Number | % | 25.6% |
+|Boolean | 100.0% | 100.0% |
+|Char |70.8% | 70.8% |
+|Array | 54.5% | 54.5% |
+|Gregorian | 33.0% | 34.0% |
+|Filename | 33.7% | 33.7% |
+|String | 53.3% | 53.3% |
+|Number | 22.2% | 25.6% |
 </td>
 <td>
 
 | Class | EclEmma | My tool |
 | :---:   | :---: | :---: |
-|Boolean | % | 100.0% |
-|Char | % | 100.0% |
-|Array | % | 73.7% |
-|Gregorian | % | 25.8% |
-|Filename | % | 51.0% |
-|String | % | 71.2% |
-|Number | % | 42.3% |
+|Boolean | 100.0% | 100.0% |
+|Char | 100.0% | 100.0% |
+|Array | 75.0% | 73.7% |
+|Gregorian | 25.0% | 25.8% |
+|Filename | 49.0% | 51.0% |
+|String | 72.0% | 71.2% |
+|Number | 32.5% | 42.3% |
 </td></tr> 
 </table>
-
