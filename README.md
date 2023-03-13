@@ -11,16 +11,16 @@ https://github.com/KerimKochekov/comp5111asg01
   - File name for branch coverages: `./screenshots/randoop[0-4]_branch`
   - File name for statement coverages: `./screenshots/randoop[0-4]_statement`
 - Script for generating tests is `${PROJECT_ROOT}/gen-tests.sh`
-- Script for running `Assignment1.java` is `${PROJECT_ROOT}/run_soot.sh`
+- Script for running `Assignment1.java` is `${PROJECT_ROOT}/run-soot.sh`
 
 ## How to run?
 ```
 $ cd scripts
-$ chmod +x run_soot.sh
-$ ./run_soot.sh
+$ chmod +x run-soot.sh
+$ ./run-soot.sh
 ```
 
-Edit `run_soot.sh` based on your need (to specify test suite and specific classname). Follow the guidline `Assignment1.java` for more information.
+Edit `run-soot.sh` based on your need (to specify test suite and specific classname). Follow the guidline `Assignment1.java` for more information.
 
 ## Experiments
 
