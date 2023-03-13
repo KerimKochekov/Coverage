@@ -1,5 +1,24 @@
 # COMP 5111 - Assignment 1
 
+## Structure
+- Test suites of Task 1 are under `${PROJECT_ROOT}/src/test/randoop[0-4]`
+- My tool for Task 2-3 is `${PROJECT_ROOT}/src/main/java/comp5111/assignment/Assignment1.java`
+- Auxiliary files for Task 2-3 are under `${PROJECT_ROOT}/src/main/java/comp5111/assignment/cut`
+- Screenshots of 5 test suites under `${PROJECT_ROOT}/screenshots`:
+  - File name for branch coverages: `./screenshots/randoop[0-4]_branch`
+  - File name for statement coverages: `./screenshots/randoop[0-4]_statement`
+- Script for generating tests is `${PROJECT_ROOT}/gen-tests.sh`
+- Script for running `Assignment1.java` is `${PROJECT_ROOT}/run_soot.sh`
+
+## How to run?
+```
+$ cd scripts
+$ chmod +x run_soot.sh
+$ ./run_soot.sh
+```
+
+Edit `run_soot.sh` based on your need (to specify test suite and specific classname). Follow the guidline `Assignment1.java` for more information.
+
 ## Experiments
 
 `test/randoop0`
