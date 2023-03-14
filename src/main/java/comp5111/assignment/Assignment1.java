@@ -19,33 +19,26 @@ public class Assignment1 {
             // here we programmitically run junit tests
             testClass = Class.forName("comp5111.assignment.cut." + test_suite);
             JUnitCore junit = new JUnitCore();
-            // System.out.println("Running junit test: " + testClass.getName());
+            System.out.println("Running junit test: " + testClass.getName());
             junit.run(testClass);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
     static String SubjectClass = "comp5111.assignment.cut.Subject$";
-    static String NumberTasksClass = SubjectClass + "NumberTasks";
-    static String CharTasksClass = SubjectClass + "CharTasks";
-    static String GregorianTasksClass = SubjectClass + "GregorianTasks";
-    static String FilenameTasksClass = SubjectClass + "FilenameTasks";
-    static String ArrayTasksClass = SubjectClass + "ArrayTasks";
-    static String StringTasksClass = SubjectClass + "StringTasks";
-    static String BooleanTasksClass = SubjectClass + "BooleanTasks";
+    // define sub-classes to be analyzed in array form
     private static String[] classesToBeAnalyzed = new String[]{
-        NumberTasksClass,
-        CharTasksClass,
-        GregorianTasksClass,
-        FilenameTasksClass,
-        ArrayTasksClass,
-        StringTasksClass,
-        BooleanTasksClass
+        SubjectClass + "NumberTasks",
+        SubjectClass + "CharTasks",
+        SubjectClass + "GregorianTasks",
+        SubjectClass + "FilenameTasks",
+        SubjectClass + "ArrayTasks",
+        SubjectClass + "StringTasks",
+        SubjectClass + "BooleanTasks"
     };
 
     private static void instrumentWithSoot() {
         // the path to the compiled Subject class file
-        // String classUnderTestPath = "./raw-classes";
         String targetPath = "./target/classes";
 
         /*Set the soot-classpath to include the helper class and class to analyze*/
@@ -62,6 +55,7 @@ public class Assignment1 {
         /* add a phase to transformer pack by call Pack.add */
         Pack jtp = PackManager.v().getPack("jtp");
 
+        //add our custom instrumenter to jtp
         Instrumenter instrumenter = new Instrumenter();
         jtp.add(new Transform("jtp.instrumenter", instrumenter));
 
@@ -85,10 +79,13 @@ public class Assignment1 {
         String[] classNames = Arrays.copyOfRange(args, 1, args.length);
         String mainClass = "";
         if (classNames.length > 1){
+            // add prefix extension to specify package name
             mainClass = SubjectClass + classNames[1];
+            // verify entered input class takes place in main class
             Boolean found_class = false;
             for (int i = 0; i < classesToBeAnalyzed.length; i++)
                 found_class |= classesToBeAnalyzed[i].equals(mainClass);
+            // if class not found, raise error
             if (!found_class){
                 System.err.println("Searched class not found, please enter one of following classes to be analyzed:");
                 System.err.print("\tNumberTasks\n\tCharTasks\n\tGregorianTasks"+
@@ -96,23 +93,30 @@ public class Assignment1 {
                 System.exit(0);
             }
         }
+        // Instrument main class and configure the soot options
         instrumentWithSoot();
+        // Run specified test suit
         runJunitTests(classNames[0]);
 
+        // It calls relevant functions of Counter depending on purpose
         if (args[0].compareTo("0") == 0) {
             
             System.out.printf("Overall:\npercentage: %.1f%%\n\n", Counter.summary_statement(mainClass));
             System.out.println("==============================================================\n");
+            // print statement coverage percentage of each class
             for (int i = 0; i < classesToBeAnalyzed.length; i++){
-                if (mainClass.length() > 0 && !mainClass.equals(classesToBeAnalyzed[i]))
-                    continue;
+                // if it is stated analyze only specified class
+                if (mainClass.length() > 0 && !mainClass.equals(classesToBeAnalyzed[i])) continue;
                 System.out.println(classesToBeAnalyzed[i]);
+                // print covered statement divided by total statement
                 System.out.printf("percentage: %.1f%%\n\n",
                     100.0 * Counter.get_statements(classesToBeAnalyzed[i]) / 
                             Counter.total_statements(classesToBeAnalyzed[i]));
             }
 
-        } else if (args[0].compareTo("1") == 0) {
+        }
+        // Comments are same for the following two conditions as well 
+        else if (args[0].compareTo("1") == 0) {
             
             System.out.printf("Overall:\npercentage: %.1f%%\n\n", Counter.summary_branch(mainClass));
             System.out.println("==============================================================\n");
@@ -127,16 +131,17 @@ public class Assignment1 {
 
         } else if (args[0].compareTo("2") == 0) {
             
-            System.out.printf("Overall:\npercentage: %.1f%%\n\n", Counter.summary_statement(mainClass));
+            System.out.printf("Overall:\npercentage: %.1f%%\n\n", Counter.summary_line(mainClass));
             System.out.println("==============================================================\n");
             for (int i = 0; i < classesToBeAnalyzed.length; i++){
                 if (mainClass.length() > 0 && !mainClass.equals(classesToBeAnalyzed[i]))
                     continue;
                 System.out.println(classesToBeAnalyzed[i]);
                 System.out.printf("percentage: %.1f%%\n\n",
-                    100.0 * Counter.get_statements(classesToBeAnalyzed[i]) / 
-                            Counter.total_statements(classesToBeAnalyzed[i]));
+                    100.0 * Counter.get_lines(classesToBeAnalyzed[i]) / 
+                            Counter.total_lines(classesToBeAnalyzed[i]));
             }
+
         }
     }
 }

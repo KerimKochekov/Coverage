@@ -2,12 +2,11 @@ package comp5111.assignment.cut;
 import java.util.HashMap;
 
 public class Counter {
-    // private static HashMap<String, Integer> branches = new HashMap<String, Integer>();
-
     //------------------------- BRANCH COVERAGE -------------------------------
     private static HashMap<String, HashMap<String, Integer> > branch = new HashMap<String, HashMap<String, Integer>>();
     private static HashMap<String, Integer> total_branch = new HashMap<String, Integer>();
     
+    // Cover the given branch instruction with unique String id under the specifed class
     public static void covered_branch(String className, String instruction) {
         if (branch.get(className) == null)
             branch.put(className, new HashMap<String, Integer>());
@@ -15,18 +14,7 @@ public class Counter {
         if (branch.get(className).get(instruction) == null) 
             branch.get(className).put(instruction, 1);
     }
-
-    public static void update_branch(String className){
-        if (total_branch.get(className) == null)
-            total_branch.put(className, 0);
-        total_branch.put(className, total_branch.get(className) + 2);
-    }
-
-    public static int total_branches(String className){
-        if (total_branch.get(className) == null) return 0;
-        return total_branch.get(className);
-    }
-
+    // Get the total number of covered branches under specifed class
     public static int get_branches(String className){
         if (branch.get(className) == null) return 0;
         int covered_branches = 0;
@@ -34,35 +22,46 @@ public class Counter {
             covered_branches += branch.get(className).get(key);
         return covered_branches;
     }
-
-    public static float summary_branch(String intended_class){
+    // Update the total number of branches under specifed class
+    public static void update_branch(String className){
+        if (total_branch.get(className) == null)
+            total_branch.put(className, 0);
+        total_branch.put(className, total_branch.get(className) + 2);
+    }
+    // Get the total number of branches under specifed class
+    public static int total_branches(String className){
+        if (total_branch.get(className) == null) return 0;
+        return total_branch.get(className);
+    }
+    // Summarize the total number of covered branches and all branches 
+    public static float summary_branch(String intended_class){ //if intended_class is empty analyze all classes
         int covered_branches = 0, all_branches = 0;
         for (String className: branch.keySet()){
-            if (intended_class.length() > 0 && !intended_class.equals(className))
-                continue;
-            for (String instruction: branch.get(className).keySet())
-                covered_branches += branch.get(className).get(instruction);
+            if (intended_class.length() > 0 && !intended_class.equals(className)) continue;
+            covered_branches += get_branches(className);
         }
         for (String className: total_branch.keySet()){
-            if (intended_class.length() > 0 && !intended_class.equals(className))
-                continue;
+            if (intended_class.length() > 0 && !intended_class.equals(className)) continue;
             all_branches += total_branch.get(className);
         }
-        return (float)100.0 * covered_branches / all_branches;
+        return (float) 100.0 * covered_branches / all_branches;
     }
     //------------------------- STATEMENT and LINE COVERAGE -------------------------------
+    /*
+        The following structure for statement and line coverage follow same structure as branch coverage.
+        I used same functions and data structures with different naming
+        Thus I do not see any point to write same comments to there
+     */
     private static HashMap<String, HashMap<String, Integer> > statement = new HashMap<String, HashMap<String, Integer>>();
     private static HashMap<String, HashMap<String, Integer> > total_statement = new HashMap<String, HashMap<String, Integer>>();
     private static HashMap<String, HashMap<String, Integer> > line = new HashMap<String, HashMap<String, Integer>>();
     private static HashMap<String, HashMap<String, Integer> > total_line = new HashMap<String, HashMap<String, Integer>>();
-
     
     public static void update_statement(String className, String statement_signature, String line_signature){
         if (total_statement.get(className) == null){
             total_line.put(className, new HashMap<String, Integer>());
             total_statement.put(className, new HashMap<String, Integer>());
         }
-        
         if (total_statement.get(className).get(statement_signature) == null) 
             total_statement.get(className).put(statement_signature, 1);
         if (total_line.get(className).get(line_signature) == null) 
@@ -74,7 +73,6 @@ public class Counter {
             line.put(className, new HashMap<String, Integer>());
             statement.put(className, new HashMap<String, Integer>());
         }
-        
         if (statement.get(className).get(statement_signature) == null) 
             statement.get(className).put(statement_signature, 1);
         if (line.get(className).get(line_signature) == null) 
@@ -116,14 +114,11 @@ public class Counter {
     public static float summary_statement(String intended_class){
         int covered_statements = 0, all_statements = 0;
         for (String className: statement.keySet()){
-            if (intended_class.length() > 0 && !intended_class.equals(className))
-                continue;
-            for (String instruction: statement.get(className).keySet())
-                covered_statements += statement.get(className).get(instruction);
+            if (intended_class.length() > 0 && !intended_class.equals(className)) continue;
+            covered_statements += get_statements(className);
         }
         for (String className: total_statement.keySet()){
-            if (intended_class.length() > 0 && !intended_class.equals(className))
-                continue;
+            if (intended_class.length() > 0 && !intended_class.equals(className)) continue;
             all_statements += total_statements(className);
         }
         return (float)100.0 * covered_statements / all_statements;
@@ -132,28 +127,25 @@ public class Counter {
     public static float summary_line(String intended_class){
         int covered_lines = 0, all_lines = 0;
         for (String className: line.keySet()){
-            if (intended_class.length() > 0 && !intended_class.equals(className))
-                continue;
+            if (intended_class.length() > 0 && !intended_class.equals(className)) continue;
+            covered_lines += get_lines(className);
             for (String instruction: line.get(className).keySet())
                 covered_lines += line.get(className).get(instruction);
         }
         for (String className: total_line.keySet()){
-            if (intended_class.length() > 0 && !intended_class.equals(className))
-                continue;
-                all_lines += total_lines(className);
+            if (intended_class.length() > 0 && !intended_class.equals(className)) continue;
+            all_lines += total_lines(className);
         }
         return (float)100.0 * covered_lines / all_lines;
     }
-    //------------------------- AUXILIARY -------------------------------
-    
     
     public static void reset(){
-        //Total clearing
+        // Clear the data structures that keep total number of statements/branches/lines
         total_branch.clear();
         total_statement.clear();
         total_line.clear();
 
-        //Specific clearing
+        // Clear the data structures that keep total number of covered statements/branches/lines
         branch.clear();
         statement.clear();
         line.clear();
