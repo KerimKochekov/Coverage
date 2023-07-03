@@ -1,12 +1,9 @@
 # COMP 5111 - Assignment 1
 
-## Github Link 
-https://github.com/KerimKochekov/comp5111asg01
-
 ## Structure
-- Test suites of Task 1 are under `${PROJECT_ROOT}/src/test/randoop[0-4]`
-- My tool for Task 2-3 is `${PROJECT_ROOT}/src/main/java/comp5111/assignment/Assignment1.java`
-- Auxiliary files for Task 2-3 are under `${PROJECT_ROOT}/src/main/java/comp5111/assignment/cut`
+- Test suites are under `${PROJECT_ROOT}/src/test/randoop[0-4]`
+- My tool for is under `${PROJECT_ROOT}/src/main/java/comp5111/assignment/Assignment1.java`
+- Auxiliary files of algoritm is under `${PROJECT_ROOT}/src/main/java/comp5111/assignment/cut`
 - Screenshots of 5 test suites under `${PROJECT_ROOT}/screenshots`:
   - File name for branch coverages: `./screenshots/randoop[0-4]_branch`
   - File name for statement coverages: `./screenshots/randoop[0-4]_statement`
