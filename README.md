@@ -1,4 +1,4 @@
-# COMP 5111 - Assignment 1
+# Coverage measurer
 
 ## Structure
 - Test suites are under `${PROJECT_ROOT}/src/test/randoop[0-4]`
